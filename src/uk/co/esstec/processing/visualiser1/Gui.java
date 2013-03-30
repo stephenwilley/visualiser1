@@ -11,7 +11,7 @@ public class Gui extends PApplet {
      * Basic GUI functionality of the applet
      */
     private static final long serialVersionUID = 1L;
-    private static final String version = "3";
+    private static final String version = "4";
     private static final String imagePath = "/Users/stephen/Desktop/visualiser1/"
             + Integer.parseInt(version) + "/";
 
@@ -31,7 +31,7 @@ public class Gui extends PApplet {
 
         // Create the FFT
         fftLog1 = new FFT(player.bufferSize(), player.sampleRate());
-        fftLog1.logAverages(22, 3);
+        fftLog1.logAverages(11, 12);
 
         rectMode(CORNERS);
     }
