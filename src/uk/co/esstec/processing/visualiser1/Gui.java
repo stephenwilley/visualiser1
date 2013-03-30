@@ -11,7 +11,7 @@ public class Gui extends PApplet {
      * Basic GUI functionality of the applet
      */
     private static final long serialVersionUID = 1L;
-    private static final String version = "6";
+    private static final String version = "7";
     private static final String imagePath = "/Users/stephen/Desktop/visualiser1/"
             + Integer.parseInt(version) + "/";
 
@@ -44,16 +44,18 @@ public class Gui extends PApplet {
         noStroke();
         fill(255);
         int middle = height / 2;
+        int margin = 64;
+        int newWidth = width - (margin * 2);
 
         fftLog1.forward(player.left);
         fftLog2.forward(player.right);
-        int w = width/fftLog1.avgSize();
+        int w = newWidth/fftLog1.avgSize();
         for(int i = 0; i < fftLog1.avgSize(); i++)
         {
             float size1 = fftLog1.getAvg(i) / 5;
             float size2 = fftLog2.getAvg(i) / 5;
-            rect(i*w + 1, middle - 1, i*w + w, middle - 1 - size1);
-            rect(i*w + 1, middle, i*w + w, middle + size2);
+            rect(i*w + 1 + margin, middle - 1, i*w + w + margin, middle - 1 - size1);
+            rect(i*w + 1 + margin, middle, i*w + w + margin, middle + size2);
         }
 
         saveFrame(imagePath + "pic-#####.png");
