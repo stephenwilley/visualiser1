@@ -11,9 +11,6 @@ public class Gui extends PApplet {
      * Basic GUI functionality of the applet
      */
     private static final long serialVersionUID = 1L;
-    private static final String version = "7";
-    private static final String imagePath = "/Users/stephen/Desktop/visualiser1/"
-            + Integer.parseInt(version) + "/";
 
     Minim minim;
     AudioPlayer player;
@@ -57,8 +54,6 @@ public class Gui extends PApplet {
             rect(i*w + 1 + margin, middle - 1, i*w + w + margin, middle - 1 - size1);
             rect(i*w + 1 + margin, middle, i*w + w + margin, middle + size2);
         }
-
-        saveFrame(imagePath + "pic-#####.png");
     }
 
     @Override
