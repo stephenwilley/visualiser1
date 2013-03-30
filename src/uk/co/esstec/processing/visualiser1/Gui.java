@@ -11,13 +11,13 @@ public class Gui extends PApplet {
      * Basic GUI functionality of the applet
      */
     private static final long serialVersionUID = 1L;
-    private static final String version = "5";
+    private static final String version = "6";
     private static final String imagePath = "/Users/stephen/Desktop/visualiser1/"
             + Integer.parseInt(version) + "/";
 
     Minim minim;
     AudioPlayer player;
-    FFT fftLog1;
+    FFT fftLog1, fftLog2;
 
     @Override
     public void setup() {
@@ -32,6 +32,8 @@ public class Gui extends PApplet {
         // Create the FFT
         fftLog1 = new FFT(player.bufferSize(), player.sampleRate());
         fftLog1.logAverages(11, 12);
+        fftLog2 = new FFT(player.bufferSize(), player.sampleRate());
+        fftLog2.logAverages(11, 12);
 
         rectMode(CORNERS);
     }
@@ -43,12 +45,15 @@ public class Gui extends PApplet {
         fill(255);
         int middle = height / 2;
 
-        fftLog1.forward(player.mix);
+        fftLog1.forward(player.left);
+        fftLog2.forward(player.right);
         int w = width/fftLog1.avgSize();
         for(int i = 0; i < fftLog1.avgSize(); i++)
         {
             float size1 = fftLog1.getAvg(i) / 5;
+            float size2 = fftLog2.getAvg(i) / 5;
             rect(i*w + 1, middle - 1, i*w + w, middle - 1 - size1);
+            rect(i*w + 1, middle, i*w + w, middle + size2);
         }
 
         saveFrame(imagePath + "pic-#####.png");
